@@ -63,9 +63,29 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
         html[lang="en"] .es { display: none !important; }
         
         html { scroll-behavior: smooth; }
+
+        /* Animación para el Hero Section */
+        @keyframes subtleZoom {
+            0% { transform: scale(1.0); }
+            100% { transform: scale(1.08); }
+        }
+        .animate-bg-zoom {
+            animation: subtleZoom 15s alternate infinite ease-in-out;
+        }
+        
+        /* Estilos para el selector de Airbnb/Booking */
+        .tab-active {
+            background-color: #b8860b;
+            color: #0a0a0a;
+        }
+        .tab-inactive {
+            background-color: transparent;
+            color: #b8860b;
+        }
+        .hidden-platform { display: none !important; }
     </style>
 </head>
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <body class="bg-brand-black text-gray-300 font-sans antialiased overflow-x-hidden">
 
     <nav class="fixed w-full z-50 bg-brand-black/90 backdrop-blur-md border-b border-white/10 transition-all">
@@ -103,19 +123,25 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
         </div>
     </nav>
 
-    <section class="relative min-h-screen flex items-center justify-start pt-32 pb-24 lg:pt-20 lg:pb-0">
-        <div class="absolute inset-0 z-0 bg-brand-gray">
-            <img src="./assets/camper5.jpeg" alt="Campers Fan Village" class="w-full h-full object-cover opacity-40 grayscale-[20%]">
-            <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/80 to-transparent"></div>
+    <section class="relative min-h-screen flex items-center justify-start pt-32 pb-24 lg:pt-20 lg:pb-0 overflow-hidden">
+        <div class="absolute inset-0 z-0 bg-brand-black">
+            <img src="./assets/camper5.jpeg" alt="Campers Fan Village" class="w-full h-full object-cover opacity-60 animate-bg-zoom">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/70 to-transparent"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent"></div>
         </div>
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-3xl">
-                <h1 class="text-5xl md:text-7xl font-display font-bold text-white leading-tight uppercase mb-6">
+                <div class="inline-flex items-center gap-2 bg-brand-gold/10 border border-brand-gold/50 text-brand-gold px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 animate-pulse">
+                    <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
+                    <span class="es">Alta Demanda: ¡Últimos Lugares!</span>
+                    <span class="en">High Demand: Selling Fast!</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-display font-bold text-white leading-tight uppercase mb-6 drop-shadow-lg">
                     <span class="es">La mejor forma de <br>vivir el <span class="text-gradient-gold">campeonato</span> <br>en CDMX</span>
                     <span class="en">The best way to <br>experience the <span class="text-gradient-gold">2026 soccer fest</span> <br>in CDMX</span>
                 </h1>
-                <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-xl font-light">
+                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-xl font-light drop-shadow-md">
                     <span class="es">Hospitalidad premium, comunidad y pasión en la villa para fans más exclusiva del campeonato de 2026.</span>
                     <span class="en">Premium hospitality, community, and passion at the most exclusive fan village for the 2026 tournament.</span>
                 </p>
@@ -138,15 +164,12 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
                     </div>
                 </div>
                 
-                <div class="flex flex-col gap-5 items-start">
-                    <div class="flex items-center gap-4">
-                        <a href="#hospedaje" class="bg-brand-gold text-brand-black px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-brand-gold-hover transition duration-300 inline-block shadow-[0_0_20px_rgba(184,134,11,0.3)]">
-                            <span class="es">Reserva tu Camper</span><span class="en">Book Your Camper</span>
-                        </a>
-                        <span class="text-sm text-gray-500"><span class="es">A través de</span><span class="en">Via</span> Airbnb</span>
-                    </div>
-                    <a href="#contacto" class="border border-brand-gold text-brand-gold px-8 py-3 rounded-sm font-bold uppercase tracking-wider hover:bg-brand-gold hover:text-brand-black transition duration-300 inline-block">
-                        <span class="es">Lista de espera para Day Pass</span><span class="en">Waitlist for Day Pass</span>
+                <div class="flex flex-col sm:flex-row gap-5 items-start sm:items-center mt-8">
+                    <a href="#hospedaje" class="bg-brand-gold text-brand-black px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-brand-gold-hover transition duration-300 inline-block shadow-[0_0_20px_rgba(184,134,11,0.4)] hover:shadow-[0_0_30px_rgba(184,134,11,0.6)] transform hover:-translate-y-1">
+                        <span class="es">Ver Opciones de Reserva</span><span class="en">View Booking Options</span>
+                    </a>
+                    <a href="#contacto" class="text-white underline decoration-brand-gold decoration-2 underline-offset-4 hover:text-brand-gold transition duration-300 font-medium tracking-wide">
+                        <span class="es">Solo busco el Day Pass</span><span class="en">I just want a Day Pass</span>
                     </a>
                 </div>
             </div>
@@ -203,15 +226,26 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
 
     <section id="hospedaje" class="py-24 bg-brand-black border-t border-b border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
+            <div class="text-center mb-10">
                 <h2 class="text-4xl font-display font-bold uppercase tracking-widest text-white mb-4">
                     <span class="es">Hospedaje & <span class="text-gradient-gold">Accesos</span></span>
                     <span class="en">Lodging and <span class="text-gradient-gold">Access</span></span>
                 </h2>
                 <p class="text-gray-400 font-light max-w-2xl mx-auto">
-                    <span class="es">Selecciona el nivel de exclusividad para tu experiencia de esta temporada. Acceso restringido mediante pulseras inteligentes.</span>
-                    <span class="en">Select the level of exclusivity for your 2026 soccer experience. Restricted access via smart wristbands.</span>
+                    <span class="es">Selecciona tu plataforma de reserva favorita. Acceso restringido mediante pulseras inteligentes.</span>
+                    <span class="en">Select your preferred booking platform. Restricted access via smart wristbands.</span>
                 </p>
+            </div>
+
+            <div class="flex justify-center mb-12 relative z-20">
+                <div class="inline-flex bg-brand-dark border border-brand-gold/30 rounded-sm p-1 shadow-[0_0_15px_rgba(184,134,11,0.15)]">
+                    <button id="btn-airbnb" class="px-8 py-3 text-sm font-bold uppercase tracking-wider tab-active transition-all duration-300 rounded-sm" onclick="setPlatform('airbnb')">
+                        Airbnb
+                    </button>
+                    <button id="btn-booking" class="px-8 py-3 text-sm font-bold uppercase tracking-wider tab-inactive transition-all duration-300 rounded-sm border border-transparent hover:border-brand-gold/50" onclick="setPlatform('booking')">
+                        Booking.com
+                    </button>
+                </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -224,20 +258,23 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
                     <ul class="text-sm text-gray-400 space-y-3 mb-8 flex-grow">
                         <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Hasta 2 personas</span><span class="en">Up to 2 people</span></li>
                         <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso a baño</span><span class="en">Bathroom access</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso al área de fans y todas las actividades</span><span class="en">Access to fan lounge and all activities</span></li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso al área de fans y actividades</span><span class="en">Access to fan lounge and activities</span></li>
                         <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Pulsera VIP</span><span class="en">VIP Camper Wristband</span></li>
                         <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Seguridad 24/7</span><span class="en">24/7 Security</span></li>
                     </ul>
-                    <details class="w-full group cursor-pointer">
-    <summary class="block text-center border border-brand-gold text-brand-gold py-3 uppercase text-sm font-bold tracking-wider hover:bg-brand-gold hover:text-brand-black transition duration-300 list-none [&::-webkit-details-marker]:hidden">
-        <span class="es">Ver Disponibilidad</span><span class="en">Check Availability</span>
-    </summary>
-    <div class="flex flex-col mt-2 gap-2">
-        <a href="https://airbnb.mx/h/campercozy1" target="_blank" class="block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300">Cozy #1</a>
-        <a href="https://airbnb.mx/h/campercozy2" target="_blank" class="block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300">Cozy #2</a>
-        <a href="https://airbnb.mx/h/campercozy3" target="_blank" class="block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300">Cozy #3</a>
-    </div>
-</details>
+                    <details class="w-full group cursor-pointer mt-auto">
+                        <summary class="block text-center border border-brand-gold text-brand-gold py-3 uppercase text-sm font-bold tracking-wider hover:bg-brand-gold hover:text-brand-black transition duration-300 list-none [&::-webkit-details-marker]:hidden">
+                            <span class="es">Ver Disponibilidad</span><span class="en">Check Availability</span>
+                        </summary>
+                        <div class="flex flex-col mt-2 gap-2">
+                            <a href="https://airbnb.mx/h/campercozy1" target="_blank" data-platform="airbnb" class="platform-link block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300">Cozy #1 (Airbnb)</a>
+                            <a href="https://airbnb.mx/h/campercozy2" target="_blank" data-platform="airbnb" class="platform-link block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300">Cozy #2 (Airbnb)</a>
+                            <a href="https://airbnb.mx/h/campercozy3" target="_blank" data-platform="airbnb" class="platform-link block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300">Cozy #3 (Airbnb)</a>
+                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition duration-300">Cozy #1 (Booking)</a>
+                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition duration-300">Cozy #2 (Booking)</a>
+                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition duration-300">Cozy #3 (Booking)</a>
+                        </div>
+                    </details>
                 </div>
 
                 <div class="bg-brand-dark border border-white/10 rounded-sm p-8 hover:border-brand-gold/50 transition duration-300 flex flex-col">
@@ -248,21 +285,25 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
                     <ul class="text-sm text-gray-400 space-y-3 mb-8 flex-grow">
                         <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Hasta 6 personas</span><span class="en">Up to 6 people</span></li>
                         <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso a baño</span><span class="en">Bathroom access</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso al área de fans y todas las actividades</span><span class="en">Access to fan lounge and all activities</span></li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso al área de fans y actividades</span><span class="en">Access to fan lounge and activities</span></li>
                         <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Pulsera VIP</span><span class="en">VIP Gold Wristband</span></li>
                         <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Comodidad Premium</span><span class="en">Premium Comfort</span></li>
                     </ul>
-                    <details class="w-full group cursor-pointer">
-    <summary class="block text-center border border-brand-gold text-brand-gold py-3 uppercase text-sm font-bold tracking-wider hover:bg-brand-gold hover:text-brand-black transition duration-300 list-none [&::-webkit-details-marker]:hidden">
-        <span class="es">Ver Disponibilidad</span><span class="en">Check Availability</span>
-    </summary>
-    <div class="flex flex-col mt-2 gap-2">
-        <a href="https://airbnb.mx/h/camperconfort1" target="_blank" class="block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #1</a>
-        <a href="https://airbnb.mx/h/camperconfort2" target="_blank" class="block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #2</a>
-        <a href="https://airbnb.mx/h/camperconfort3" target="_blank" class="block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #3</a>
-        <a href="https://airbnb.mx/h/camperconfort4" target="_blank" class="block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #4</a>
-    </div>
-</details>
+                    <details class="w-full group cursor-pointer mt-auto">
+                        <summary class="block text-center border border-brand-gold text-brand-gold py-3 uppercase text-sm font-bold tracking-wider hover:bg-brand-gold hover:text-brand-black transition duration-300 list-none [&::-webkit-details-marker]:hidden">
+                            <span class="es">Ver Disponibilidad</span><span class="en">Check Availability</span>
+                        </summary>
+                        <div class="flex flex-col mt-2 gap-2">
+                            <a href="https://airbnb.mx/h/camperconfort1" target="_blank" data-platform="airbnb" class="platform-link block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #1 (Airbnb)</a>
+                            <a href="https://airbnb.mx/h/camperconfort2" target="_blank" data-platform="airbnb" class="platform-link block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #2 (Airbnb)</a>
+                            <a href="https://airbnb.mx/h/camperconfort3" target="_blank" data-platform="airbnb" class="platform-link block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #3 (Airbnb)</a>
+                            <a href="https://airbnb.mx/h/camperconfort4" target="_blank" data-platform="airbnb" class="platform-link block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #4 (Airbnb)</a>
+                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #1 (Booking)</a>
+                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #2 (Booking)</a>
+                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #3 (Booking)</a>
+                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #4 (Booking)</a>
+                        </div>
+                    </details>
                 </div>
 
                 <div class="bg-gradient-dark border border-brand-gold/30 rounded-sm p-8 hover:border-brand-gold transition duration-300 flex flex-col relative overflow-hidden">
@@ -272,25 +313,34 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
                     <ul class="text-sm text-gray-400 space-y-3 mb-8 flex-grow">
                         <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Hasta 6 personas</span><span class="en">Up to 6 people</span></li>
                         <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso a baño</span><span class="en">Bathroom access</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso al área de fans y todas las actividades</span><span class="en">Access to fan lounge and all activities</span></li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso al área de fans y actividades</span><span class="en">Access to fan lounge and activities</span></li>
                         <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Pulsera VIP</span><span class="en">VIP Diamond Wristband</span></li>
                         <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Ubicación privilegiada</span><span class="en">Prime Location</span></li>
                     </ul>
-                    <details class="w-full group cursor-pointer relative z-20">
-    <summary class="block text-center bg-brand-gold text-brand-black py-3 uppercase text-sm font-bold tracking-wider hover:bg-brand-gold-hover transition duration-300 list-none [&::-webkit-details-marker]:hidden">
-        <span class="es">Seleccionar VIP</span><span class="en">Select VIP</span>
-    </summary>
-    <div class="grid grid-cols-2 gap-2 mt-2">
-        <a href="https://airbnb.mx/h/campervip1" target="_blank" class="block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP #1</a>
-        <a href="https://airbnb.mx/h/campervip2" target="_blank" class="block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP #2</a>
-        <a href="https://airbnb.mx/h/campervip3" target="_blank" class="block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP #3</a>
-        <a href="https://airbnb.mx/h/campervip4" target="_blank" class="block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP #4</a>
-        <a href="https://airbnb.mx/h/campervip5" target="_blank" class="block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP #5</a>
-        <a href="https://airbnb.mx/h/campervip6" target="_blank" class="block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP #6</a>
-        <a href="https://airbnb.mx/h/campervip7" target="_blank" class="block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP #7</a>
-        <a href="https://airbnb.mx/h/campervip8" target="_blank" class="block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP #8</a>
-    </div>
-</details>
+                    <details class="w-full group cursor-pointer relative z-20 mt-auto">
+                        <summary class="block text-center bg-brand-gold text-brand-black py-3 uppercase text-sm font-bold tracking-wider hover:bg-brand-gold-hover transition duration-300 list-none [&::-webkit-details-marker]:hidden">
+                            <span class="es">Seleccionar VIP</span><span class="en">Select VIP</span>
+                        </summary>
+                        <div class="grid grid-cols-2 gap-2 mt-2">
+                            <a href="https://airbnb.mx/h/campervip1" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 1 (ABNB)</a>
+                            <a href="https://airbnb.mx/h/campervip2" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 2 (ABNB)</a>
+                            <a href="https://airbnb.mx/h/campervip3" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 3 (ABNB)</a>
+                            <a href="https://airbnb.mx/h/campervip4" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 4 (ABNB)</a>
+                            <a href="https://airbnb.mx/h/campervip5" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 5 (ABNB)</a>
+                            <a href="https://airbnb.mx/h/campervip6" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 6 (ABNB)</a>
+                            <a href="https://airbnb.mx/h/campervip7" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 7 (ABNB)</a>
+                            <a href="https://airbnb.mx/h/campervip8" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 8 (ABNB)</a>
+                            
+                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 1 (BKG)</a>
+                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 2 (BKG)</a>
+                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 3 (BKG)</a>
+                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 4 (BKG)</a>
+                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 5 (BKG)</a>
+                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 6 (BKG)</a>
+                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 7 (BKG)</a>
+                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 8 (BKG)</a>
+                        </div>
+                    </details>
                 </div>
 
                 <div class="bg-brand-dark border border-white/10 rounded-sm p-8 transition duration-300 flex flex-col">
@@ -302,9 +352,9 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
                         <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Pantalla Gigante</span><span class="en">Giant Screen</span></li>
                         <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> Food Trucks and Bars</li>
                     </ul>
-                    <a href="#reserva-daypass" class="block w-full text-center bg-brand-gold text-brand-black py-3 uppercase text-sm font-bold tracking-wider hover:bg-brand-gold-hover transition duration-300">
-    <span class="es">Reserva tu boleto</span><span class="en">Book your ticket</span>
-</a>
+                    <a href="#reserva-daypass" class="block w-full text-center bg-brand-gold text-brand-black py-3 uppercase text-sm font-bold tracking-wider hover:bg-brand-gold-hover transition duration-300 mt-auto">
+                        <span class="es">Reserva tu boleto</span><span class="en">Book your ticket</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -553,6 +603,7 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
     </footer>
 
     <script>
+        // Lógica del traductor
         const langToggle = document.getElementById('lang-toggle');
         
         langToggle.addEventListener('click', (e) => {
@@ -567,6 +618,27 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
                 langToggle.textContent = 'EN'; 
             }
         });
+
+        // Lógica del switch de plataformas
+        function setPlatform(platform) {
+            // Actualizar diseño de los botones
+            if(platform === 'airbnb') {
+                document.getElementById('btn-airbnb').className = 'px-8 py-3 text-sm font-bold uppercase tracking-wider tab-active transition-all duration-300 rounded-sm';
+                document.getElementById('btn-booking').className = 'px-8 py-3 text-sm font-bold uppercase tracking-wider tab-inactive transition-all duration-300 rounded-sm border border-transparent hover:border-brand-gold/50';
+            } else {
+                document.getElementById('btn-booking').className = 'px-8 py-3 text-sm font-bold uppercase tracking-wider tab-active transition-all duration-300 rounded-sm';
+                document.getElementById('btn-airbnb').className = 'px-8 py-3 text-sm font-bold uppercase tracking-wider tab-inactive transition-all duration-300 rounded-sm border border-transparent hover:border-brand-gold/50';
+            }
+            
+            // Ocultar/Mostrar enlaces
+            document.querySelectorAll('.platform-link').forEach(link => {
+                if(link.dataset.platform === platform) {
+                    link.classList.remove('hidden-platform');
+                } else {
+                    link.classList.add('hidden-platform');
+                }
+            });
+        }
     </script>
 
 </body>
