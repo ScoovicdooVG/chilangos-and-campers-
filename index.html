@@ -35,11 +35,11 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
             theme: {
                 extend: {
                     colors: {
-                        'brand-black': '#0a0a0a',
-                        'brand-gray': '#1a1a1a',
-                        'brand-dark': '#111111',
-                        'brand-gold': '#b8860b',
-                        'brand-gold-hover': '#9b7109'
+                        'brand-dark': '#0a0a0a',
+                        'brand-card': '#161616',
+                        'brand-accent': '#FBBF24', /* Amarillo vibrante para CTA */
+                        'brand-accent-hover': '#F59E0B',
+                        'whatsapp': '#25D366'
                     },
                     fontFamily: {
                         'sans': ['Inter', 'sans-serif'],
@@ -50,404 +50,303 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
         }
     </script>
     <style>
-        .text-gradient-gold {
-            background: linear-gradient(to right, #b8860b, #d4af37);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .bg-gradient-dark {
-            background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
-        }
-
         html[lang="es"] .en { display: none !important; }
         html[lang="en"] .es { display: none !important; }
-        
         html { scroll-behavior: smooth; }
 
-        /* Animación para el Hero Section */
-        @keyframes subtleZoom {
-            0% { transform: scale(1.0); }
-            100% { transform: scale(1.08); }
+        /* Custom scrollbar para la galería en móviles */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Detalles para el acordeón de FAQ */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: slideDown 0.3s ease-in-out; }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .animate-bg-zoom {
-            animation: subtleZoom 15s alternate infinite ease-in-out;
-        }
-        
-        /* Estilos para el selector de Airbnb/Booking */
-        .tab-active {
-            background-color: #b8860b;
-            color: #0a0a0a;
-        }
-        .tab-inactive {
-            background-color: transparent;
-            color: #b8860b;
-        }
-        .hidden-platform { display: none !important; }
+        details[open] summary svg.chevron { transform: rotate(180deg); }
     </style>
 </head>
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<body class="bg-brand-black text-gray-300 font-sans antialiased overflow-x-hidden">
+<body class="bg-brand-dark text-gray-300 font-sans antialiased overflow-x-hidden selection:bg-brand-accent selection:text-black">
 
-    <nav class="fixed w-full z-50 bg-brand-black/90 backdrop-blur-md border-b border-white/10 transition-all">
+    <a href="https://wa.me/5215540382853?text=Hola, quiero más información sobre los campers" target="_blank" class="fixed bottom-24 lg:bottom-6 right-4 lg:right-6 bg-whatsapp text-white p-4 rounded-full shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform z-50 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+        </svg>
+    </a>
+
+    <nav class="fixed w-full z-40 bg-brand-dark/90 backdrop-blur-md border-b border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <div class="font-display font-bold text-xl tracking-widest text-white flex flex-col leading-tight">
-                        <span>CHILANGOS</span>
-                        <span class="text-brand-gold text-sm">AND CAMPERS</span>
+                <div class="flex items-center gap-3">
+                    <svg class="w-8 h-8 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <div class="font-display font-bold text-lg leading-tight text-white uppercase tracking-wider">
+                        Chilangos<br><span class="text-brand-accent text-xs">& Campers</span>
                     </div>
                 </div>
-                <div class="hidden md:flex space-x-8 items-center text-sm uppercase tracking-wider font-medium">
-                    <a href="#nosotros" class="hover:text-brand-gold transition duration-300">
-                        <span class="es">Nosotros</span><span class="en">About</span>
-                    </a>
-                    <a href="#hospedaje" class="hover:text-brand-gold transition duration-300">
-                        <span class="es">Campers</span><span class="en">Campers</span>
-                    </a>
-                    <a href="#ubicacion" class="hover:text-brand-gold transition duration-300">
-                        <span class="es">Ubicación</span><span class="en">Location</span>
-                    </a>
-                    <a href="#sponsors" class="hover:text-brand-gold transition duration-300">
-                        <span class="es">Sponsors</span><span class="en">Sponsors</span>
-                    </a>
+                <div class="hidden lg:flex space-x-6 items-center text-xs uppercase tracking-widest font-semibold text-gray-400">
+                    <a href="#campers" class="hover:text-white transition">Campers</a>
+                    <a href="#experiencia" class="hover:text-white transition"><span class="es">Experiencia</span><span class="en">Experience</span></a>
+                    <a href="#ubicacion" class="hover:text-white transition"><span class="es">Ubicación</span><span class="en">Location</span></a>
+                    <a href="#faq" class="hover:text-white transition">FAQ</a>
+                    <button id="lang-toggle" class="border-l border-gray-700 pl-6 ml-2 hover:text-white">EN</button>
                     
-                    <button id="lang-toggle" class="text-gray-400 hover:text-white font-bold transition duration-300 border-l border-white/20 pl-6 ml-2">
-                        EN
-                    </button>
-
-                    <a href="#hospedaje" class="bg-brand-gold text-brand-black px-6 py-2 rounded-sm font-bold hover:bg-brand-gold-hover transition duration-300">
-                        <span class="es">Reserva Ahora</span><span class="en">Book Now</span>
+                    <a href="https://wa.me/5215540382853?text=Hola, quiero más información sobre los campers" class="bg-brand-accent/10 border border-brand-accent text-brand-accent px-5 py-2 rounded-full hover:bg-brand-accent hover:text-brand-dark transition flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+                        <span class="es">Habla con nosotros</span><span class="en">Talk to us</span>
                     </a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <section class="relative min-h-screen flex items-center justify-start pt-32 pb-24 lg:pt-20 lg:pb-0 overflow-hidden">
-        <div class="absolute inset-0 z-0 bg-brand-black">
-            <img src="./assets/camper5.jpeg" alt="Campers Fan Village" class="w-full h-full object-cover opacity-60 animate-bg-zoom">
-            <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/70 to-transparent"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent"></div>
+    <section class="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden border-b border-white/10">
+        <div class="absolute inset-0 z-0">
+            <img src="./assets/Principal.jpeg" alt="Fan Zone" class="w-full h-full object-cover opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/60 to-brand-dark"></div>
         </div>
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="max-w-3xl">
-                <div class="inline-flex items-center gap-2 bg-brand-gold/10 border border-brand-gold/50 text-brand-gold px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 animate-pulse">
-                    <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
-                    <span class="es">Alta Demanda: ¡Últimos Lugares!</span>
-                    <span class="en">High Demand: Selling Fast!</span>
-                </div>
-                
-                <h1 class="text-5xl md:text-7xl font-display font-bold text-white leading-tight uppercase mb-6 drop-shadow-lg">
-    <span class="es">
-    VIVE EL TORNEO <br>
-    <span class="text-gradient-gold">DE FÚTBOL</span> <br>
-    MÁS GRANDE DEL MUNDO
-</span>
-
-<span class="en">
-    EXPERIENCE THE WORLD'S <br>
-    BIGGEST <span class="text-gradient-gold">SOCCER TOURNAMENT</span>
-</span>
-</h1>
-                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-xl font-light drop-shadow-md">
-                    <span class="es">Hospitalidad premium, comunidad y pasión en la villa para fans más exclusiva del campeonato de 2026.</span>
-                    <span class="en">Premium hospitality, community, and passion at the most exclusive fan village for the 2026 tournament.</span>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl">
+                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-display font-extrabold text-white leading-tight uppercase mb-6 drop-shadow-xl">
+                    <span class="es">¿Te quedaste sin hospedaje para el <span class="text-brand-accent">verano futbolero 2026?</span></span>
+                    <span class="en">No place to stay for the <span class="text-brand-accent">2026 Soccer Fest?</span></span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl font-light">
+                    <span class="es">Vive todos los partidos en la mejor Fan Zone de CDMX y hospédate en campers premium.</span>
+                    <span class="en">Experience all the matches in the best Fan Zone in CDMX and stay in premium campers.</span>
                 </p>
-                <div class="flex flex-wrap gap-6 mb-10 text-sm font-medium tracking-wide uppercase">
-                    <div class="flex items-center gap-2">
-                        <svg class="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                        <span>Premium Campers</span>
+
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10 text-xs sm:text-sm font-semibold uppercase tracking-wider text-white/90">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-brand-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        <span><span class="es">A solo 8 km<br>del estadio</span><span class="en">Just 8 km<br>from stadium</span></span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                        <span class="es">Pantalla Gigante</span><span class="en">Giant Screen</span>
+                    <div class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-brand-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                        <span><span class="es">Transporte<br>incluido</span><span class="en">Transport<br>included</span></span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        <span class="es">Shuttle al Estadio</span><span class="en">Stadium Shuttle</span>
+                    <div class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-brand-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <span><span class="es">Pantallas<br>gigantes</span><span class="en">Giant<br>Screens</span></span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                        <span>Watch Party</span>
+                    <div class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-brand-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        <span>Food<br>Trucks</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-brand-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        <span><span class="es">Comunidad<br>futbolera</span><span class="en">Soccer<br>Community</span></span>
                     </div>
                 </div>
-                
-                <div class="flex flex-col sm:flex-row gap-5 items-start sm:items-center mt-8">
-                    <a href="#hospedaje" class="bg-brand-gold text-brand-black px-8 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-brand-gold-hover transition duration-300 inline-block shadow-[0_0_20px_rgba(184,134,11,0.4)] hover:shadow-[0_0_30px_rgba(184,134,11,0.6)] transform hover:-translate-y-1">
-                        <span class="es">Ver Opciones de Reserva</span><span class="en">View Booking Options</span>
+
+                <div class="flex flex-col sm:flex-row items-center gap-6 relative">
+                    <a href="#campers" class="w-full sm:w-auto bg-brand-accent text-brand-dark px-10 py-4 rounded-sm font-bold uppercase tracking-wider hover:bg-brand-accent-hover transition duration-300 text-center flex justify-center items-center gap-3 text-lg">
+                        <span class="es">RESERVAR AHORA</span><span class="en">BOOK NOW</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
-                    <a href="#contacto" class="text-white underline decoration-brand-gold decoration-2 underline-offset-4 hover:text-brand-gold transition duration-300 font-medium tracking-wide">
-                        <span class="es">Solo busco el Day Pass</span><span class="en">I just want a Day Pass</span>
-                    </a>
+                    <div class="text-brand-accent font-medium flex items-center gap-2">
+                        <svg class="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>
+                        <span class="es">Solo 18 campers disponibles. No te quedes fuera.</span>
+                        <span class="en">Only 18 campers available. Don't miss out.</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex absolute right-10 bottom-10 w-32 h-32 rounded-full border-2 border-brand-accent items-center justify-center text-center p-4 bg-brand-dark/80 backdrop-blur-sm">
+                <div>
+                    <span class="block text-4xl font-display font-bold text-brand-accent leading-none">18</span>
+                    <span class="block text-[10px] uppercase font-bold text-white mt-1"><span class="es">CAMPERS<br>DISPONIBLES</span><span class="en">CAMPERS<br>AVAILABLE</span></span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="nosotros" class="py-24 bg-brand-dark border-t border-b border-white/5 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center gap-16">
-                <div class="w-full lg:w-1/2">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="h-px bg-brand-gold w-12 opacity-50"></div>
-                        <h2 class="text-3xl font-display font-bold uppercase tracking-widest text-white">
-                            <span class="es">¿Quiénes <span class="text-gradient-gold">Somos?</span></span>
-                            <span class="en">Who <span class="text-gradient-gold">Are We?</span></span>
-                        </h2>
-                    </div>
-                    
-                    <p class="text-gray-400 font-light text-lg mb-6 leading-relaxed">
-                        <span class="es">Chilangos and Campers es una experiencia premium de hospedaje y área de fans creada para el campeonato de 2026 en Ciudad de México.</span>
-                        <span class="en">Chilangos and Campers is a premium lodging and fan lounge experience created for the 2026 tournament in Mexico City.</span>
-                    </p>
-                    
-                    <p class="text-gray-400 font-light text-lg mb-6 leading-relaxed">
-                        <span class="es">El proyecto nace con el objetivo de transformar la forma en la que las personas viven eventos masivos deportivos, creando una experiencia exclusiva, segura, social y visualmente atractiva alrededor del fútbol.</span>
-                        <span class="en">The project was born with the objective of transforming the way people experience massive sporting events, creating an exclusive, safe, social, and visually attractive experience around soccer.</span>
-                    </p>
-                    
-                    <div class="border-l-2 border-brand-gold pl-5 py-2 mt-8">
-                        <p class="text-gray-300 font-medium text-lg leading-relaxed italic">
-                            <span class="es">"No es solamente un hospedaje, buscamos construir una comunidad y una experiencia que combine entretenimiento, hospitalidad, activaciones y convivencia."</span>
-                            <span class="en">"It is not just lodging, we seek to build a community and an experience that combines entertainment, hospitality, activations, and socialization."</span>
-                        </p>
+    <section class="border-b border-white/5 bg-[#111111]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="flex items-start gap-4">
+                    <svg class="w-8 h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    <div>
+                        <h4 class="text-white font-bold uppercase text-sm mb-1"><span class="es">Seguro y Privado</span><span class="en">Safe & Private</span></h4>
+                        <p class="text-gray-500 text-xs leading-relaxed"><span class="es">Vigilancia 24/7 para que disfrutes sin preocupaciones.</span><span class="en">24/7 surveillance so you can enjoy worry-free.</span></p>
                     </div>
                 </div>
-                
-                <div class="w-full lg:w-1/2 relative">
-                    <div class="w-full h-[450px] bg-brand-black border border-white/10 rounded-sm relative overflow-hidden group">
-                        <img src="./assets/camper2.jpeg" alt="Premium Camper" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-700 grayscale-[20%]">
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black/90 to-transparent"></div>
-                        
-                        <div class="absolute inset-0 border border-brand-gold/20 m-6 rounded-sm pointer-events-none transition duration-700 group-hover:scale-95 group-hover:border-brand-gold/40"></div>
-                        <div class="absolute bottom-10 left-10">
-                            <div class="font-display font-bold text-2xl tracking-widest text-white flex flex-col leading-tight opacity-80">
-                                <span>CHILANGOS</span>
-                                <span class="text-brand-gold text-sm">AND CAMPERS</span>
-                            </div>
-                        </div>
+                <div class="flex items-start gap-4">
+                    <svg class="w-8 h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 12V8H6a2 2 0 01-2-2c0-1.1.9-2 2-2h12v4M4 10v9a1 1 0 001 1h14a1 1 0 001-1v-5"></path></svg>
+                    <div>
+                        <h4 class="text-white font-bold uppercase text-sm mb-1"><span class="es">Cómodo y Equipado</span><span class="en">Comfortable & Equipped</span></h4>
+                        <p class="text-gray-500 text-xs leading-relaxed"><span class="es">Todo lo que necesitas para una estancia increíble.</span><span class="en">Everything you need for an incredible stay.</span></p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <svg class="w-8 h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <div>
+                        <h4 class="text-white font-bold uppercase text-sm mb-1"><span class="es">39 Días de Experiencia</span><span class="en">39 Days of Experience</span></h4>
+                        <p class="text-gray-500 text-xs leading-relaxed"><span class="es">Vive la emoción de todos los partidos del torneo.</span><span class="en">Live the excitement of all the tournament matches.</span></p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <svg class="w-8 h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <div>
+                        <h4 class="text-white font-bold uppercase text-sm mb-1"><span class="es">Ambiente Único</span><span class="en">Unique Atmosphere</span></h4>
+                        <p class="text-gray-500 text-xs leading-relaxed"><span class="es">Conecta con fans y crea recuerdos que duran toda la vida.</span><span class="en">Connect with fans and create lifelong memories.</span></p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="hospedaje" class="py-24 bg-brand-black border-t border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="campers" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="bg-brand-card border border-white/10 rounded-2xl p-6 sm:p-10 shadow-2xl">
             <div class="text-center mb-10">
-                <h2 class="text-4xl font-display font-bold uppercase tracking-widest text-white mb-4">
-                    <span class="es">Hospedaje & <span class="text-gradient-gold">Accesos</span></span>
-                    <span class="en">Lodging and <span class="text-gradient-gold">Access</span></span>
-                </h2>
-                <p class="text-gray-400 font-light max-w-2xl mx-auto">
-                    <span class="es">Selecciona tu plataforma de reserva favorita. Acceso restringido mediante pulseras inteligentes.</span>
-                    <span class="en">Select your preferred booking platform. Restricted access via smart wristbands.</span>
-                </p>
+                <h2 class="text-3xl font-display font-bold text-white uppercase tracking-widest"><span class="es">Elige tu camper</span><span class="en">Choose your camper</span></h2>
+                <p class="text-brand-accent text-sm font-semibold uppercase tracking-widest mt-2"><span class="es">Comodidad para cada estilo</span><span class="en">Comfort for every style</span></p>
             </div>
 
-            <div class="flex justify-center mb-12 relative z-20">
-                <div class="inline-flex bg-brand-dark border border-brand-gold/30 rounded-sm p-1 shadow-[0_0_15px_rgba(184,134,11,0.15)]">
-                    <button id="btn-airbnb" class="px-8 py-3 text-sm font-bold uppercase tracking-wider tab-active transition-all duration-300 rounded-sm" onclick="setPlatform('airbnb')">
-                        Airbnb
-                    </button>
-                    <button id="btn-booking" class="px-8 py-3 text-sm font-bold uppercase tracking-wider tab-inactive transition-all duration-300 rounded-sm border border-transparent hover:border-brand-gold/50" onclick="setPlatform('booking')">
-                        Booking.com
-                    </button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 
-                <div class="bg-brand-dark border border-white/10 rounded-sm p-8 hover:border-brand-gold/50 transition duration-300 flex flex-col">
-                    <h3 class="text-xl font-display font-bold text-white uppercase mb-2">
-                        <span class="es">Cozy Camper</span><span class="en">Cozy Camper</span>
-                    </h3>
-                    <p class="text-2xl font-light text-brand-gold mb-6">$7,000 <span class="text-sm text-gray-500"><span class="es">MXN/noche</span><span class="en">MXN/night</span></span></p>
-                    <ul class="text-sm text-gray-400 space-y-3 mb-8 flex-grow">
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Hasta 2 personas</span><span class="en">Up to 2 people</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso a baño</span><span class="en">Bathroom access</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso al área de fans y actividades</span><span class="en">Access to fan lounge and activities</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Pulsera VIP</span><span class="en">VIP Camper Wristband</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Seguridad 24/7</span><span class="en">24/7 Security</span></li>
-                    </ul>
+                <div class="group cursor-pointer flex flex-col">
+                    <div class="relative h-48 sm:h-56 rounded-t-xl overflow-hidden mb-4">
+                        <div class="absolute top-4 left-4 bg-[#8B9B8E] text-white text-xs font-bold px-3 py-1 rounded-sm uppercase z-10"><span class="es">Doble / Individual</span><span class="en">Double / Single</span></div>
+                        <img src="./assets/cozy2.jpeg" alt="Camper Doble" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="flex justify-between items-end border-b border-gray-800 pb-4 mb-4">
+                        <div>
+                            <p class="text-white font-bold text-lg mb-2"><span class="es">1 PERSONA</span><span class="en">1 PERSON</span></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs text-gray-500 uppercase"><span class="es">Desde</span><span class="en">From</span></p>
+                            <p class="text-xl font-bold text-white">$7,000 MXN</p>
+                        </div>
+                    </div>
                     <details class="w-full group cursor-pointer mt-auto">
-                        <summary class="block text-center border border-brand-gold text-brand-gold py-3 uppercase text-sm font-bold tracking-wider hover:bg-brand-gold hover:text-brand-black transition duration-300 list-none [&::-webkit-details-marker]:hidden">
+                        <summary class="block text-center border border-brand-accent text-brand-accent py-3 uppercase text-sm font-bold tracking-wider hover:bg-brand-accent hover:text-brand-dark transition duration-300 list-none [&::-webkit-details-marker]:hidden">
                             <span class="es">Ver Disponibilidad</span><span class="en">Check Availability</span>
                         </summary>
                         <div class="flex flex-col mt-2 gap-2">
-                            <a href="https://airbnb.mx/h/campercozy1" target="_blank" data-platform="airbnb" class="platform-link block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300">Cozy #1 (Airbnb)</a>
-                            <a href="https://airbnb.mx/h/campercozy2" target="_blank" data-platform="airbnb" class="platform-link block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300">Cozy #2 (Airbnb)</a>
-                            <a href="https://airbnb.mx/h/campercozy3" target="_blank" data-platform="airbnb" class="platform-link block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300">Cozy #3 (Airbnb)</a>
-                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition duration-300">Cozy #1 (Booking)</a>
-                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition duration-300">Cozy #2 (Booking)</a>
-                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition duration-300">Cozy #3 (Booking)</a>
+                            <a href="https://airbnb.mx/h/campercozy1" target="_blank" class="block border border-white/10 bg-brand-dark text-gray-400 hover:border-brand-accent hover:text-brand-accent py-2 text-xs font-medium text-center transition">Cozy #1 (Airbnb) - 1 Persona</a>
+                            <a href="https://airbnb.mx/h/campercozy2" target="_blank" class="block border border-white/10 bg-brand-dark text-gray-400 hover:border-brand-accent hover:text-brand-accent py-2 text-xs font-medium text-center transition">Cozy #2 (Airbnb) - 1 Persona</a>
+                            <a href="https://airbnb.mx/h/campercozy3" target="_blank" class="block border border-white/10 bg-brand-dark text-gray-400 hover:border-brand-accent hover:text-brand-accent py-2 text-xs font-medium text-center transition">Cozy #3 (Airbnb) - 1 Persona</a>
+                            <a href="#" target="_blank" class="block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition">Cozy #1 (Booking) - 1 Persona</a>
+                            <a href="#" target="_blank" class="block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition">Cozy #2 (Booking) - 1 Persona</a>
+                            <a href="#" target="_blank" class="block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition">Cozy #3 (Booking) - 1 Persona</a>
                         </div>
                     </details>
                 </div>
 
-                <div class="bg-brand-dark border border-white/10 rounded-sm p-8 hover:border-brand-gold/50 transition duration-300 flex flex-col">
-                    <h3 class="text-xl font-display font-bold text-white uppercase mb-2">
-                        <span class="es">Confort Camper</span><span class="en">Confort Camper</span>
-                    </h3>
-                    <p class="text-2xl font-light text-brand-gold mb-6">$20,000 <span class="text-sm text-gray-500"><span class="es">MXN/noche</span><span class="en">MXN/night</span></span></p>
-                    <ul class="text-sm text-gray-400 space-y-3 mb-8 flex-grow">
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Hasta 6 personas</span><span class="en">Up to 6 people</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso a baño</span><span class="en">Bathroom access</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso al área de fans y actividades</span><span class="en">Access to fan lounge and activities</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Pulsera VIP</span><span class="en">VIP Gold Wristband</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Comodidad Premium</span><span class="en">Premium Comfort</span></li>
-                    </ul>
-                    <details class="w-full group cursor-pointer mt-auto">
-                        <summary class="block text-center border border-brand-gold text-brand-gold py-3 uppercase text-sm font-bold tracking-wider hover:bg-brand-gold hover:text-brand-black transition duration-300 list-none [&::-webkit-details-marker]:hidden">
-                            <span class="es">Ver Disponibilidad</span><span class="en">Check Availability</span>
-                        </summary>
-                        <div class="flex flex-col mt-2 gap-2">
-                            <a href="https://airbnb.mx/h/camperconfort1" target="_blank" data-platform="airbnb" class="platform-link block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #1 (Airbnb)</a>
-                            <a href="https://airbnb.mx/h/camperconfort2" target="_blank" data-platform="airbnb" class="platform-link block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #2 (Airbnb)</a>
-                            <a href="https://airbnb.mx/h/camperconfort3" target="_blank" data-platform="airbnb" class="platform-link block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #3 (Airbnb)</a>
-                            <a href="https://airbnb.mx/h/camperconfort4" target="_blank" data-platform="airbnb" class="platform-link block border border-white/10 bg-brand-black text-gray-400 hover:border-brand-gold hover:text-brand-gold py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #4 (Airbnb)</a>
-                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #1 (Booking)</a>
-                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #2 (Booking)</a>
-                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #3 (Booking)</a>
-                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-white/10 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-xs font-medium text-center transition duration-300 uppercase">Confort #4 (Booking)</a>
+                <div class="group cursor-pointer flex flex-col">
+                    <div class="relative h-48 sm:h-56 rounded-t-xl overflow-hidden mb-4">
+                        <div class="absolute top-4 left-4 bg-[#A88C64] text-white text-xs font-bold px-3 py-1 rounded-sm uppercase z-10">Premium</div>
+                        <img src="./assets/camper4.jpeg" alt="Camper Premium" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="flex justify-between items-end border-b border-gray-800 pb-4 mb-4">
+                        <div>
+                            <p class="text-white font-bold text-lg mb-2"><span class="es">4 - 6 PERSONAS</span><span class="en">4 - 6 PEOPLE</span></p>
                         </div>
-                    </details>
-                </div>
-
-                <div class="bg-gradient-dark border border-brand-gold/30 rounded-sm p-8 hover:border-brand-gold transition duration-300 flex flex-col relative overflow-hidden">
-                    <div class="absolute top-4 right-4 text-xs font-bold bg-brand-gold text-brand-black px-2 py-1 uppercase tracking-wider">Premium</div>
-                    <h3 class="text-xl font-display font-bold text-white uppercase mb-2">VIP Camper</h3>
-                    <p class="text-2xl font-light text-brand-gold mb-6">$30,000 <span class="text-sm text-gray-500"><span class="es">MXN/noche</span><span class="en">MXN/night</span></span></p>
-                    <ul class="text-sm text-gray-400 space-y-3 mb-8 flex-grow">
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Hasta 6 personas</span><span class="en">Up to 6 people</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso a baño</span><span class="en">Bathroom access</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso al área de fans y actividades</span><span class="en">Access to fan lounge and activities</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Pulsera VIP</span><span class="en">VIP Diamond Wristband</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Ubicación privilegiada</span><span class="en">Prime Location</span></li>
-                    </ul>
+                        <div class="text-right">
+                            <p class="text-xs text-brand-accent uppercase"><span class="es">Desde</span><span class="en">From</span></p>
+                            <p class="text-xl font-bold text-brand-accent">$5,000 MXN</p>
+                            <p class="text-[10px] text-brand-accent uppercase"><span class="es">por persona</span><span class="en">per person</span></p>
+                        </div>
+                    </div>
                     <details class="w-full group cursor-pointer relative z-20 mt-auto">
-                        <summary class="block text-center bg-brand-gold text-brand-black py-3 uppercase text-sm font-bold tracking-wider hover:bg-brand-gold-hover transition duration-300 list-none [&::-webkit-details-marker]:hidden">
+                        <summary class="block text-center bg-brand-accent text-brand-dark py-3 uppercase text-sm font-bold tracking-wider hover:bg-brand-accent-hover transition duration-300 list-none [&::-webkit-details-marker]:hidden">
                             <span class="es">Seleccionar VIP</span><span class="en">Select VIP</span>
                         </summary>
                         <div class="grid grid-cols-2 gap-2 mt-2">
-                            <a href="https://airbnb.mx/h/campervip1" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 1 (ABNB)</a>
-                            <a href="https://airbnb.mx/h/campervip2" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 2 (ABNB)</a>
-                            <a href="https://airbnb.mx/h/campervip3" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 3 (ABNB)</a>
-                            <a href="https://airbnb.mx/h/campervip4" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 4 (ABNB)</a>
-                            <a href="https://airbnb.mx/h/campervip5" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 5 (ABNB)</a>
-                            <a href="https://airbnb.mx/h/campervip6" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 6 (ABNB)</a>
-                            <a href="https://airbnb.mx/h/campervip7" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 7 (ABNB)</a>
-                            <a href="https://airbnb.mx/h/campervip8" target="_blank" data-platform="airbnb" class="platform-link block border border-brand-gold/30 bg-brand-black text-gray-300 hover:bg-brand-gold hover:text-brand-black py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 8 (ABNB)</a>
-                            
-                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 1 (BKG)</a>
-                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 2 (BKG)</a>
-                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 3 (BKG)</a>
-                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 4 (BKG)</a>
-                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 5 (BKG)</a>
-                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 6 (BKG)</a>
-                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 7 (BKG)</a>
-                            <a href="#" target="_blank" data-platform="booking" class="platform-link hidden-platform block border border-brand-gold/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold tracking-wider text-center transition duration-300 uppercase">VIP 8 (BKG)</a>
+                            <a href="https://airbnb.mx/h/campervip1" target="_blank" class="block border border-brand-accent/30 bg-brand-dark text-gray-300 hover:bg-brand-accent hover:text-black py-2 text-[10px] font-bold text-center transition uppercase">VIP 1 (ABNB)</a>
+                            <a href="https://airbnb.mx/h/campervip2" target="_blank" class="block border border-brand-accent/30 bg-brand-dark text-gray-300 hover:bg-brand-accent hover:text-black py-2 text-[10px] font-bold text-center transition uppercase">VIP 2 (ABNB)</a>
+                            <a href="https://airbnb.mx/h/campervip3" target="_blank" class="block border border-brand-accent/30 bg-brand-dark text-gray-300 hover:bg-brand-accent hover:text-black py-2 text-[10px] font-bold text-center transition uppercase">VIP 3 (ABNB)</a>
+                            <a href="https://airbnb.mx/h/campervip4" target="_blank" class="block border border-brand-accent/30 bg-brand-dark text-gray-300 hover:bg-brand-accent hover:text-black py-2 text-[10px] font-bold text-center transition uppercase">VIP 4 (ABNB)</a>
+                            <a href="https://airbnb.mx/h/campervip5" target="_blank" class="block border border-brand-accent/30 bg-brand-dark text-gray-300 hover:bg-brand-accent hover:text-black py-2 text-[10px] font-bold text-center transition uppercase">VIP 5 (ABNB)</a>
+                            <a href="https://airbnb.mx/h/campervip6" target="_blank" class="block border border-brand-accent/30 bg-brand-dark text-gray-300 hover:bg-brand-accent hover:text-black py-2 text-[10px] font-bold text-center transition uppercase">VIP 6 (ABNB)</a>
+                            <a href="#" target="_blank" class="block border border-brand-accent/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold text-center transition uppercase">VIP 7 (BKG)</a>
+                            <a href="#" target="_blank" class="block border border-brand-accent/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold text-center transition uppercase">VIP 8 (BKG)</a>
+                            <a href="#" target="_blank" class="block border border-brand-accent/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold text-center transition uppercase">VIP 9 (BKG)</a>
+                            <a href="#" target="_blank" class="block border border-brand-accent/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold text-center transition uppercase">VIP 10 (BKG)</a>
+                            <a href="#" target="_blank" class="block border border-brand-accent/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold text-center transition uppercase">VIP 11 (BKG)</a>
+                            <a href="#" target="_blank" class="block border border-brand-accent/30 bg-[#003580] text-gray-300 hover:bg-[#0055b3] hover:text-white py-2 text-[10px] font-bold text-center transition uppercase">VIP 12 (BKG)</a>
                         </div>
                     </details>
                 </div>
 
-                <div class="bg-brand-dark border border-white/10 rounded-sm p-8 transition duration-300 flex flex-col">
-                    <h3 class="text-xl font-display font-bold text-white uppercase mb-2">Day Pass</h3>
-                    <p class="text-2xl font-light text-brand-gold mb-6">$1,500 <span class="text-sm text-gray-500"><span class="es">MXN/día</span><span class="en">MXN/day</span></span></p>
-                    <ul class="text-sm text-gray-400 space-y-3 mb-8 flex-grow">
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso a baño</span><span class="en">Bathroom access</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Acceso General</span><span class="en">General Access</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> <span class="es">Pantalla Gigante</span><span class="en">Giant Screen</span></li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div> Food Trucks and Bars</li>
-                    </ul>
-                    <a href="#reserva-daypass" class="block w-full text-center bg-brand-gold text-brand-black py-3 uppercase text-sm font-bold tracking-wider hover:bg-brand-gold-hover transition duration-300 mt-auto">
-                        <span class="es">Reserva tu boleto</span><span class="en">Book your ticket</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="ubicacion" class="py-24 bg-brand-dark relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center gap-16">
-                <div class="w-full lg:w-1/2">
-                    <h2 class="text-4xl font-display font-bold uppercase tracking-widest text-white mb-2">
-                        <span class="es">A <span class="text-gradient-gold">13 Minutos</span><br>del Estadio Azteca</span>
-                        <span class="en">Just <span class="text-gradient-gold">13 Minutes</span><br>from Estadio Azteca</span>
-                    </h2>
-                    <p class="text-brand-gold text-sm mb-6 font-bold uppercase tracking-widest">
-                        <span class="es">(Transporte incluido para huéspedes)</span>
-                        <span class="en">(Transport included for guests)</span>
-                    </p>
-
-                    <p class="text-gray-400 font-light text-lg mb-8">
-                        <span class="es">Ubicación estratégica en Pabellón Cuemanco, ofreciendo acceso rápido, seguridad y conectividad total para turistas nacionales y extranjeros.</span>
-                        <span class="en">Strategic location at Pabellón Cuemanco, offering quick access, security, and total connectivity for national and international tourists.</span>
-                    </p>
-                    
-                    <div class="flex items-center gap-4 text-sm text-gray-400 border-l-2 border-brand-gold pl-4 py-2 mt-8">
-                        <p>
-                            <span class="es">Ruta rápida por Anillo Periférico y Viaducto Tlalpan, con opciones de Shuttle seguro incluido en tu experiencia.</span>
-                            <span class="en">Fast route via Anillo Periferico and Viaducto Tlalpan, with secure Shuttle options included in your experience.</span>
-                        </p>
+                <div class="border border-gray-800 rounded-xl p-6 flex flex-col justify-center gap-8 bg-brand-dark/50">
+                        <div class="flex gap-4 items-center">
+                            <svg class="w-10 h-10 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                            <div>
+                                <p class="text-white font-bold uppercase text-sm"><span class="es">MÍNIMO</span><span class="en">MINIMUM</span></p>
+                                <p class="text-gray-400 text-xs"><span class="es">4 PERSONAS</span><span class="en">4 PEOPLE</span><br><span class="es">por reserva premium</span><span class="en">per premium booking</span></p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-center">
+                            <svg class="w-10 h-10 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            <div>
+                                <p class="text-white font-bold uppercase text-sm"><span class="es">MÁXIMO</span><span class="en">MAXIMUM</span></p>
+                                <p class="text-gray-400 text-xs"><span class="es">6 PERSONAS</span><span class="en">6 PEOPLE</span><br><span class="es">en camper premium</span><span class="en">in premium camper</span></p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-center">
+                            <svg class="w-10 h-10 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <div>
+                                <p class="text-brand-accent font-bold uppercase text-sm"><span class="es">PRECIOS POR PERSONA</span><span class="en">PRICES PER PERSON</span></p>
+                                <p class="text-gray-400 text-xs"><span class="es">experiencia incluida</span><span class="en">experience included</span></p>
+                            </div>
+                        </div>
                     </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="experiencia" class="py-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl font-display font-bold text-white uppercase tracking-widest mb-12"><span class="es">¿Qué incluye tu estancia?</span><span class="en">What's included in your stay?</span></h2>
+            
+            <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 text-center">
+                <div class="flex flex-col items-center">
+                    <svg class="w-10 h-10 text-brand-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span class="text-[10px] sm:text-xs text-gray-400 uppercase font-medium"><span class="es">Hospedaje en<br>camper premium</span><span class="en">Premium camper<br>lodging</span></span>
                 </div>
-                
-                <div class="w-full lg:w-1/2">
-                    <div class="w-full h-full min-h-[400px] border border-brand-gold/20 rounded-sm relative overflow-hidden group shadow-[0_0_30px_rgba(184,134,11,0.1)]">
-                        <img src="./assets/mapa.jpeg" alt="Ruta de Estadio Azteca a Pabellón Cuemanco" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                    </div>
+                <div class="flex flex-col items-center">
+                    <svg class="w-10 h-10 text-brand-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <span class="text-[10px] sm:text-xs text-gray-400 uppercase font-medium"><span class="es">Pantallas<br>gigantes</span><span class="en">Giant<br>screens</span></span>
                 </div>
+                <div class="flex flex-col items-center">
+                    <svg class="w-10 h-10 text-brand-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <span class="text-[10px] sm:text-xs text-gray-400 uppercase font-medium">Fan Zone</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <svg class="w-10 h-10 text-brand-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>
+                    <span class="text-[10px] sm:text-xs text-gray-400 uppercase font-medium">Food<br>trucks</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <svg class="w-10 h-10 text-brand-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M4.399 9.384c5.823-5.822 15.255-5.822 21.078 0"></path></svg>
+                    <span class="text-[10px] sm:text-xs text-gray-400 uppercase font-medium"><span class="es">WiFi de<br>alta velocidad</span><span class="en">High speed<br>WiFi</span></span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <svg class="w-10 h-10 text-brand-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    <span class="text-[10px] sm:text-xs text-gray-400 uppercase font-medium"><span class="es">Seguridad<br>24/7</span><span class="en">24/7<br>Security</span></span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <svg class="w-10 h-10 text-brand-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <span class="text-[10px] sm:text-xs text-gray-400 uppercase font-medium"><span class="es">Transporte al<br>estadio</span><span class="en">Transport to<br>stadium</span></span>
+                </div>
+            </div>
+
+            <div class="flex gap-4 mt-12 overflow-x-auto hide-scrollbar snap-x">
+                <img src="./assets/Principal.jpeg" class="h-48 sm:h-64 rounded-lg object-cover w-64 sm:w-96 flex-shrink-0 snap-center" alt="Ambiente nocturno Fan Zone">
+                <img src="./assets/camper4.jpeg" class="h-48 sm:h-64 rounded-lg object-cover w-64 sm:w-96 flex-shrink-0 snap-center" alt="Interior Sala Premium">
+                <img src="./assets/camper3.jpeg" class="h-48 sm:h-64 rounded-lg object-cover w-64 sm:w-96 flex-shrink-0 snap-center" alt="Habitación Camper">
+                <img src="./assets/camper5.jpeg" class="h-48 sm:h-64 rounded-lg object-cover w-64 sm:w-96 flex-shrink-0 snap-center" alt="Exterior Camper Premium">
             </div>
         </div>
     </section>
-
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
-        <div class="border-t border-b border-white/10 py-10">
-            <div class="grid grid-cols-3 lg:grid-cols-9 gap-4 text-center">
-                <div class="flex flex-col items-center justify-center group cursor-pointer">
-                    <svg class="w-8 h-8 text-brand-gold mb-3 group-hover:scale-110 group-hover:-translate-y-1 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-widest font-medium"><span class="es">Zona de<br>Hospedaje</span><span class="en">Lodging<br>Zone</span></span>
-                </div>
-                <div class="flex flex-col items-center justify-center group cursor-pointer">
-                    <svg class="w-8 h-8 text-brand-gold mb-3 group-hover:scale-110 group-hover:-translate-y-1 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-widest font-medium"><span class="es">Transporte al<br>Estadio</span><span class="en">Stadium<br>Transport</span></span>
-                </div>
-                <div class="flex flex-col items-center justify-center group cursor-pointer">
-                    <svg class="w-8 h-8 text-brand-gold mb-3 group-hover:scale-110 group-hover:-translate-y-1 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-widest font-medium"><span class="es">Comunidad</span><span class="en">Community</span></span>
-                </div>
-                
-                <div class="flex flex-col items-center justify-center group cursor-pointer">
-                    <svg class="w-8 h-8 text-brand-gold mb-3 group-hover:scale-110 group-hover:-translate-y-1 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 12V8H6a2 2 0 01-2-2c0-1.1.9-2 2-2h12v4M4 10v9a1 1 0 001 1h14a1 1 0 001-1v-5"></path></svg>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-widest font-medium">Lounge<br>and Relax</span>
-                </div>
-                <div class="flex flex-col items-center justify-center group cursor-pointer">
-                    <svg class="w-8 h-8 text-brand-gold mb-3 group-hover:scale-110 group-hover:-translate-y-1 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M4.399 9.384c5.823-5.822 15.255-5.822 21.078 0"></path></svg>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-widest font-medium"><span class="es">WiFi de<br>Alta Velocidad</span><span class="en">High-Speed<br>WiFi</span></span>
-                </div>
-                <div class="flex flex-col items-center justify-center group cursor-pointer">
-                    <svg class="w-8 h-8 text-brand-gold mb-3 group-hover:scale-110 group-hover:-translate-y-1 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-widest font-medium"><span class="es">Seguridad<br>24/7</span><span class="en">24/7<br>Security</span></span>
-                </div>
-                <div class="flex flex-col items-center justify-center group cursor-pointer">
-                    <svg class="w-8 h-8 text-brand-gold mb-3 group-hover:scale-110 group-hover:-translate-y-1 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-widest font-medium">Food<br>Trucks</span>
-                </div>
-                <div class="flex flex-col items-center justify-center group cursor-pointer">
-                    <svg class="w-8 h-8 text-brand-gold mb-3 group-hover:scale-110 group-hover:-translate-y-1 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-widest font-medium"><span class="es">Pantallas<br>Gigantes</span><span class="en">Giant<br>Screens</span></span>
-                </div>
-                <div class="flex flex-col items-center justify-center group cursor-pointer">
-                    <svg class="w-8 h-8 text-brand-gold mb-3 group-hover:scale-110 group-hover:-translate-y-1 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-widest font-medium"><span class="es">Y Mucho<br>Más</span><span class="en">And Much<br>More</span></span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contacto" class="py-24 bg-brand-black relative z-10 border-t border-white/5">
+	<section id="contacto" class="py-24 bg-brand-black relative z-10 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 
@@ -496,128 +395,122 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
             </div>
         </div>
     </section>
-
-    <section id="sponsors" class="py-24 bg-brand-dark border-t border-white/5">
+    <section id="faq" class="py-20 border-t border-white/5 bg-[#111111]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <div class="h-px bg-brand-gold w-16 opacity-50 mx-auto mb-6"></div>
-                <h2 class="text-3xl font-display font-bold uppercase tracking-widest text-white mb-4">Branding & <span class="text-gradient-gold">Partnerships</span></h2>
-                <p class="text-gray-400 font-light max-w-2xl mx-auto">
-                    <span class="es">Posiciona tu marca frente a un público de alto perfil en un entorno lifestyle. Ofrecemos integración visual y experiencias inmersivas.</span>
-                    <span class="en">Position your brand in front of a high-profile audience in a lifestyle environment. We offer visual integration and immersive experiences.</span>
-                </p>
-            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                
+                <div>
+                    <h2 class="text-2xl font-display font-bold text-white uppercase tracking-widest mb-8"><span class="es">Preguntas Frecuentes</span><span class="en">FAQ</span></h2>
+                    
+                    <div class="space-y-2">
+                        <details class="group border-b border-gray-800 py-4 cursor-pointer">
+                            <summary class="flex justify-between items-center font-semibold text-white">
+                                <span class="es">¿Cuántos campers tendrán disponibles?</span><span class="en">How many campers are available?</span>
+                                <svg class="chevron w-5 h-5 text-brand-accent transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </summary>
+                            <div class="pt-4 text-sm text-gray-400 leading-relaxed">
+                                <span class="es">Contaremos con solo 18 campers disponibles:<br>🏕️ 15 campers premium<br>🏕️ 3 campers dobles</span>
+                                <span class="en">We will only have 18 campers available:<br>🏕️ 15 premium campers<br>🏕️ 3 double campers</span>
+                            </div>
+                        </details>
+                        <details class="group border-b border-gray-800 py-4 cursor-pointer">
+                            <summary class="flex justify-between items-center font-semibold text-white">
+                                <span class="es">¿Cuántas personas caben por camper?</span><span class="en">How many people fit per camper?</span>
+                                <svg class="chevron w-5 h-5 text-brand-accent transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </summary>
+                            <div class="pt-4 text-sm text-gray-400 leading-relaxed">
+                                <span class="es">Los campers premium están diseñados para 4 a 6 personas.<br>Los campers dobles son ideales para 2 personas.</span>
+                                <span class="en">Premium campers are designed for 4 to 6 people.<br>Double campers are ideal for 2 people.</span>
+                            </div>
+                        </details>
+                        <details class="group border-b border-gray-800 py-4 cursor-pointer">
+                            <summary class="flex justify-between items-center font-semibold text-white pr-4">
+                                <span class="es">¿Puedo reservar un camper premium solo para 2 personas?</span><span class="en">Can I book a premium camper for only 2 people?</span>
+                                <svg class="chevron w-5 h-5 text-brand-accent transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </summary>
+                            <div class="pt-4 text-sm text-gray-400 leading-relaxed">
+                                <span class="es">Sí, puedes reservarlo únicamente para 2 personas si deseas más privacidad y comodidad. Sin embargo, se deberá cubrir el monto mínimo equivalente a 4 personas.</span>
+                                <span class="en">Yes, you can book it for just 2 people if you want more privacy and comfort. However, the minimum amount equivalent to 4 people must be covered.</span>
+                            </div>
+                        </details>
+                        <details class="group border-b border-gray-800 py-4 cursor-pointer">
+                            <summary class="flex justify-between items-center font-semibold text-white">
+                                <span class="es">¿Puedo reservar el camper completo?</span><span class="en">Can I book the entire camper?</span>
+                                <svg class="chevron w-5 h-5 text-brand-accent transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </summary>
+                            <div class="pt-4 text-sm text-gray-400 leading-relaxed">
+                                <span class="es">Sí, puedes reservar el camper completo para tu grupo durante los días que quieras.</span>
+                                <span class="en">Yes, you can book the entire camper for your group for as many days as you want.</span>
+                            </div>
+                        </details>
+                        <details class="group border-b border-gray-800 py-4 cursor-pointer">
+                            <summary class="flex justify-between items-center font-semibold text-white">
+                                <span class="es">¿Qué incluyen los campers?</span><span class="en">What is included in the campers?</span>
+                                <svg class="chevron w-5 h-5 text-brand-accent transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </summary>
+                            <div class="pt-4 text-sm text-gray-400 leading-relaxed grid grid-cols-2 gap-2">
+                                <div class="col-span-2 mb-2"><span class="es">Nuestros campers premium están totalmente equipados e incluyen:</span><span class="en">Our premium campers are fully equipped and include:</span></div>
+                                <div>❄️ <span class="es">Aire acondicionado</span><span class="en">Air conditioning</span></div>
+                                <div>🛏️ <span class="es">Camas</span><span class="en">Beds</span></div>
+                                <div>🚿 <span class="es">Baño</span><span class="en">Bathroom</span></div>
+                                <div>📺 TV</div>
+                                <div>🍳 <span class="es">Cocina completa</span><span class="en">Full kitchen</span></div>
+                                <div>🧊 <span class="es">Refrigerador</span><span class="en">Fridge</span></div>
+                                <div>⚡ <span class="es">Electricidad</span><span class="en">Electricity</span></div>
+                                <div>🛋️ <span class="es">Área de descanso</span><span class="en">Lounge area</span></div>
+                                <div class="col-span-2 mt-2 font-semibold text-gray-300"><span class="es">Además de:</span><span class="en">Plus:</span></div>
+                                <div class="col-span-2">🎫 <span class="es">Acceso a la Fan Zone, Food trucks, Transporte al estadio, Seguridad y Experiencia futbolera.</span><span class="en">Fan Zone Access, Food trucks, Stadium transport, Security and Soccer experience.</span></div>
+                            </div>
+                        </details>
+                        <details class="group border-b border-gray-800 py-4 cursor-pointer">
+                            <summary class="flex justify-between items-center font-semibold text-white">
+                                <span class="es">¿Puedo hospedarme varios días?</span><span class="en">Can I stay multiple days?</span>
+                                <svg class="chevron w-5 h-5 text-brand-accent transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </summary>
+                            <div class="pt-4 text-sm text-gray-400 leading-relaxed">
+                                <span class="es">Sí, puedes quedarte los días que quieras durante toda la experiencia.</span>
+                                <span class="en">Yes, you can stay as many days as you want throughout the experience.</span>
+                            </div>
+                        </details>
+                    </div>
+                </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-                <div class="h-24 bg-brand-black border border-white/5 flex items-center justify-center transition duration-300 opacity-50 hover:opacity-100 cursor-pointer">
+                <div id="ubicacion">
+                    <h2 class="text-2xl font-display font-bold text-white uppercase tracking-widest mb-4"><span class="es">Ubicación</span><span class="en">Location</span></h2>
+                    <p class="text-sm text-gray-400 mb-8"><span class="es">Estamos en una ubicación estratégica en CDMX, a solo <strong class="text-brand-accent">8 km</strong> del estadio.</span><span class="en">We are in a strategic location in CDMX, just <strong class="text-brand-accent">8 km</strong> from the stadium.</span></p>
                     
+                   <img src="./assets/mapa.jpeg" alt="Ruta detallada de Pabellón Cuemanco al Estadio Azteca" class="w-full h-auto rounded-xl border border-white/5 shadow-2xl">
                 </div>
-                <div class="h-24 bg-brand-black border border-white/5 flex items-center justify-center transition duration-300 opacity-50 hover:opacity-100 cursor-pointer">
-                    
-                </div>
-                <div class="h-24 bg-brand-black border border-white/5 flex items-center justify-center transition duration-300 opacity-50 hover:opacity-100 cursor-pointer">
-                    
-                </div>
-                <div class="h-24 bg-brand-black border border-white/5 flex items-center justify-center transition duration-300 opacity-50 hover:opacity-100 cursor-pointer">
-                    
-                </div>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-brand-black p-6 border border-white/5">
-                    <h4 class="text-brand-gold font-bold uppercase tracking-wider mb-3 text-sm">Naming <span class="es">de Zonas</span><span class="en">Rights</span></h4>
-                    <p class="text-gray-400 text-sm font-light">
-                        <span class="es">Asocia tu marca directamente con nuestras áreas clave: Lounge, área de fans o el acceso principal.</span>
-                        <span class="en">Associate your brand directly with our key areas: Lounge, Fan Area, or the main entrance.</span>
-                    </p>
-                </div>
-                <div class="bg-brand-black p-6 border border-white/5">
-                    <h4 class="text-brand-gold font-bold uppercase tracking-wider mb-3 text-sm"><span class="es">Activaciones</span><span class="en">Activations</span></h4>
-                    <p class="text-gray-400 text-sm font-light">
-                        <span class="es">Interacción directa con los asistentes mediante sampling, juegos o degustaciones premium.</span>
-                        <span class="en">Direct interaction with attendees through sampling, games, or premium tastings.</span>
-                    </p>
-                </div>
-                <div class="bg-brand-black p-6 border border-white/5">
-                    <h4 class="text-brand-gold font-bold uppercase tracking-wider mb-3 text-sm">Photo Spots</h4>
-                    <p class="text-gray-400 text-sm font-light">
-                        <span class="es">Muros de marca e instalaciones altamente "Instagrameables" para potenciar el alcance digital.</span>
-                        <span class="en">Branded walls and highly "Instagrammable" installations to boost digital reach.</span>
-                    </p>
-                </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-brand-black pt-16 pb-8 border-t border-white/10 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-                
+    <div class="fixed bottom-0 left-0 w-full bg-brand-card border-t border-gray-800 z-40 px-4 py-3 sm:py-4 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="hidden sm:flex items-center gap-4">
+                <svg class="w-8 h-8 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 <div>
-                    <div class="font-display font-bold text-2xl tracking-widest text-white flex flex-col leading-tight mb-6">
-                        <span>CHILANGOS</span>
-                        <span class="text-brand-gold text-sm">AND CAMPERS</span>
-                    </div>
-                    <p class="text-gray-400 font-light text-sm mb-6 pr-4">
-                        <span class="es">La experiencia premium definitiva para el campeonato de 2026 en CDMX. Hospitalidad, comunidad y pasión.</span>
-                        <span class="en">The ultimate premium experience for the 2026 tournament in CDMX. Hospitality, community, and passion.</span>
-                    </p>
-                    <div class="flex gap-5">
-                        <a href="https://www.instagram.com/chilangosandcampers?igsh=d2xtYmJnMzl1OGl4" target="_blank" class="text-gray-400 hover:text-brand-gold transition duration-300 transform hover:scale-110">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.88z"/></svg>
-                        </a>
-                        <a href="https://www.tiktok.com/@chilangosandcampers?_r=1&_t=ZS-96UrVdXVH1Q" target="_blank" class="text-gray-400 hover:text-brand-gold transition duration-300 transform hover:scale-110">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.89 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-bold tracking-widest uppercase mb-6 text-sm border-b border-brand-gold/30 pb-2 inline-block">
-                        <span class="es">Información & Reservas</span>
-                        <span class="en">Info & Bookings</span>
-                    </h4>
-                    <ul class="space-y-4 text-sm font-light text-gray-400">
-                        <li class="flex items-center gap-3">
-                            <svg class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <a href="mailto:info@chilangosandcampers.com" class="hover:text-brand-gold transition duration-300">info@chilangosandcampers.com</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-bold tracking-widest uppercase mb-6 text-sm border-b border-brand-gold/30 pb-2 inline-block">
-                        <span class="es">Patrocinios & PR</span>
-                        <span class="en">Partnerships & PR</span>
-                    </h4>
-                    <ul class="space-y-4 text-sm font-light text-gray-400">
-                        <li class="flex items-center gap-3">
-                            <svg class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            <a href="mailto:partners@chilangosandcampers.com" class="hover:text-brand-gold transition duration-300">partners@chilangosandcampers.com</a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-sm text-gray-500 font-light">&copy; 2026 Chilangos and Campers. <span class="es">Todos los derechos reservados.</span><span class="en">All rights reserved.</span></p>
-                <div class="text-sm text-gray-500 font-light flex gap-6">
-                    <a href="#" class="hover:text-brand-gold transition duration-300"><span class="es">Términos y Condiciones</span><span class="en">Terms & Conditions</span></a>
-                    <a href="#" class="hover:text-brand-gold transition duration-300"><span class="es">Aviso de Privacidad</span><span class="en">Privacy Policy</span></a>
+                    <p class="text-white font-bold uppercase text-sm leading-tight"><span class="es">No te quedes sin tu lugar</span><span class="en">Don't lose your spot</span></p>
+                    <p class="text-gray-400 text-xs"><span class="es">Solo 18 campers disponibles para 39 días de la mejor experiencia.</span><span class="en">Only 18 campers available for 39 days of the best experience.</span></p>
                 </div>
             </div>
+            
+            <a href="https://wa.me/5215540382853?text=Hola, quiero reservar mi lugar" target="_blank" class="w-full sm:w-auto bg-brand-accent text-brand-dark px-8 py-3 rounded-sm font-bold uppercase tracking-wider hover:bg-brand-accent-hover transition duration-300 text-center flex justify-center items-center gap-2">
+                <span class="es">RESERVAR AHORA</span><span class="en">BOOK NOW</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </a>
         </div>
-    </footer>
+    </div>
+
+    <div class="pb-24"></div>
 
     <script>
-        // Lógica del traductor
+        // Lógica de traducción simple
         const langToggle = document.getElementById('lang-toggle');
-        
         langToggle.addEventListener('click', (e) => {
             e.preventDefault();
             const htmlTag = document.documentElement;
-            
             if (htmlTag.lang === 'es') {
                 htmlTag.lang = 'en';
                 langToggle.textContent = 'ES'; 
@@ -626,28 +519,6 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
                 langToggle.textContent = 'EN'; 
             }
         });
-
-        // Lógica del switch de plataformas
-        function setPlatform(platform) {
-            // Actualizar diseño de los botones
-            if(platform === 'airbnb') {
-                document.getElementById('btn-airbnb').className = 'px-8 py-3 text-sm font-bold uppercase tracking-wider tab-active transition-all duration-300 rounded-sm';
-                document.getElementById('btn-booking').className = 'px-8 py-3 text-sm font-bold uppercase tracking-wider tab-inactive transition-all duration-300 rounded-sm border border-transparent hover:border-brand-gold/50';
-            } else {
-                document.getElementById('btn-booking').className = 'px-8 py-3 text-sm font-bold uppercase tracking-wider tab-active transition-all duration-300 rounded-sm';
-                document.getElementById('btn-airbnb').className = 'px-8 py-3 text-sm font-bold uppercase tracking-wider tab-inactive transition-all duration-300 rounded-sm border border-transparent hover:border-brand-gold/50';
-            }
-            
-            // Ocultar/Mostrar enlaces
-            document.querySelectorAll('.platform-link').forEach(link => {
-                if(link.dataset.platform === platform) {
-                    link.classList.remove('hidden-platform');
-                } else {
-                    link.classList.add('hidden-platform');
-                }
-            });
-        }
     </script>
-
 </body>
 </html>
