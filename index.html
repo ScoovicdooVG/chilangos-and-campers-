@@ -77,32 +77,66 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
         </svg>
     </a>
 
-    <nav class="absolute top-0 left-0 w-full z-40 bg-brand-dark/90 backdrop-blur-md border-b border-white/5">
+    <nav class="absolute top-0 left-0 w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center min-h-[5.5rem] py-2">
                 
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-3 relative z-50">
                     <img src="./assets/favicon.png" alt="Chilangos and Campers Logo" class="h-14 sm:h-16 md:h-20 w-auto object-contain transition-transform duration-300 hover:scale-105">
-                    
                     <div class="font-display font-bold text-lg leading-tight text-white uppercase tracking-wider">
                         Chilangos<br><span class="text-brand-accent text-[11px]">and Campers&trade;</span>
                     </div>
                 </div>
 
-                <div class="hidden lg:flex space-x-8 items-center text-sm uppercase tracking-widest font-semibold text-gray-300">
+                <div class="hidden lg:flex space-x-7 items-center text-sm uppercase tracking-widest font-semibold text-gray-300">
                     <a href="#campers" class="hover:text-white transition">Campers</a>
                     <a href="#experiencia" class="hover:text-white transition"><span class="es">Experiencia</span><span class="en">Experience</span></a>
                     <a href="#ubicacion" class="hover:text-white transition"><span class="es">Ubicación</span><span class="en">Location</span></a>
                     <a href="#faq" class="hover:text-white transition">FAQ</a>
                     
-                    <button id="lang-toggle" class="border-l border-gray-600 pl-8 ml-2 hover:text-white font-bold transition">EN</button>
+                    <button id="lang-toggle-desktop" class="lang-toggle border-l border-gray-600 pl-7 ml-2 hover:text-white font-bold transition">EN</button>
                     
-                    <a href="https://wa.me/5215540382853?text=Hola, quiero más información sobre los campers" class="bg-brand-accent/10 border border-brand-accent text-brand-accent px-6 py-2.5 rounded-full hover:bg-brand-accent hover:text-brand-dark transition flex items-center gap-2">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
-                        <span class="es font-bold">Habla con nosotros</span><span class="en font-bold">Talk to us</span>
-                    </a>
+                    <div class="flex items-center gap-3 pl-2">
+                        <a href="https://www.instagram.com/chilangosandcampers?igsh=d2xtYmJnMzl1OGl4" target="_blank" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-gray-400 hover:border-[#E1306C] hover:text-[#E1306C] hover:shadow-[0_0_15px_rgba(225,48,108,0.3)] transition duration-300 bg-brand-dark/50">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.162c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        
+                        <a href="https://www.tiktok.com/@chilangosandcampers?_r=1&_t=ZS-96UrVdXVH1Q" target="_blank" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-gray-400 hover:border-[#00f2fe] hover:text-[#00f2fe] hover:shadow-[0_0_15px_rgba(0,242,254,0.3)] transition duration-300 bg-brand-dark/50">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 448 512"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
+                        </a>
+
+                        <a href="https://wa.me/5215540382853?text=Hola, quiero más información sobre los campers" class="bg-brand-accent/10 border border-brand-accent text-brand-accent px-6 py-2.5 rounded-full hover:bg-brand-accent hover:text-brand-dark transition flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+                            <span class="es font-bold">Habla con nosotros</span><span class="en font-bold">Talk to us</span>
+                        </a>
+                    </div>
                 </div>
+
+                <button id="mobile-menu-button" class="lg:hidden text-brand-accent p-2 focus:outline-none relative z-50">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
                 
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-brand-dark/95 backdrop-blur-xl absolute top-0 left-0 w-full h-screen flex flex-col items-center justify-center space-y-8 pt-20 border-b border-white/10 z-40 transition-all duration-300">
+            <a href="#campers" class="mobile-link text-xl uppercase tracking-widest font-semibold text-white hover:text-brand-accent">Campers</a>
+            <a href="#experiencia" class="mobile-link text-xl uppercase tracking-widest font-semibold text-white hover:text-brand-accent"><span class="es">Experiencia</span><span class="en">Experience</span></a>
+            <a href="#ubicacion" class="mobile-link text-xl uppercase tracking-widest font-semibold text-white hover:text-brand-accent"><span class="es">Ubicación</span><span class="en">Location</span></a>
+            <a href="#faq" class="mobile-link text-xl uppercase tracking-widest font-semibold text-white hover:text-brand-accent">FAQ</a>
+            
+            <button id="lang-toggle-mobile" class="lang-toggle text-xl text-brand-accent font-bold mt-4 border border-brand-accent px-6 py-2 rounded-full">EN</button>
+            
+            <div class="flex gap-6 mt-8">
+                <a href="https://www.instagram.com/chilangosandcampers?igsh=d2xtYmJnMzl1OGl4" target="_blank" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-gray-300 hover:border-[#E1306C] hover:text-[#E1306C] hover:shadow-[0_0_15px_rgba(225,48,108,0.3)] transition duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.162c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                
+                <a href="https://www.tiktok.com/@chilangosandcampers?_r=1&_t=ZS-96UrVdXVH1Q" target="_blank" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-gray-300 hover:border-[#00f2fe] hover:text-[#00f2fe] hover:shadow-[0_0_15px_rgba(0,242,254,0.3)] transition duration-300">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 448 512"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
+                </a>
             </div>
         </div>
     </nav>
@@ -711,18 +745,45 @@ src="https://www.facebook.com/tr?id=2717497172001049&ev=PageView&noscript=1"
     <div class="pb-24"></div>
 
     <script>
-        // Lógica de traducción simple
-        const langToggle = document.getElementById('lang-toggle');
-        langToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            const htmlTag = document.documentElement;
-            if (htmlTag.lang === 'es') {
-                htmlTag.lang = 'en';
-                langToggle.textContent = 'ES'; 
+        // Lógica del menú móvil
+        const btnMenu = document.getElementById('mobile-menu-button');
+        const menuMobile = document.getElementById('mobile-menu');
+        const linksMobile = document.querySelectorAll('.mobile-link');
+
+        btnMenu.addEventListener('click', () => {
+            menuMobile.classList.toggle('hidden');
+            // Cambia el ícono entre hamburguesa y "X"
+            if(menuMobile.classList.contains('hidden')){
+                btnMenu.innerHTML = '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
             } else {
-                htmlTag.lang = 'es';
-                langToggle.textContent = 'EN'; 
+                btnMenu.innerHTML = '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
             }
+        });
+
+        // Cerrar menú móvil al hacer clic en un enlace
+        linksMobile.forEach(link => {
+            link.addEventListener('click', () => {
+                menuMobile.classList.add('hidden');
+                btnMenu.innerHTML = '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+            });
+        });
+
+        // Lógica de traducción para ambos botones (móvil y escritorio)
+        const langToggles = document.querySelectorAll('.lang-toggle');
+        
+        langToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const htmlTag = document.documentElement;
+                
+                if (htmlTag.lang === 'es') {
+                    htmlTag.lang = 'en';
+                    langToggles.forEach(btn => btn.textContent = 'ES'); 
+                } else {
+                    htmlTag.lang = 'es';
+                    langToggles.forEach(btn => btn.textContent = 'EN'); 
+                }
+            });
         });
     </script>
 </body>
